@@ -1,0 +1,95 @@
+<app-card [title]="title">
+
+  <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " readonly name="SaleId" [ngModel]="model.SaleId">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Customer Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="CustomerName"  [readonly]="edt"  [(ngModel)]="model.CustomerName" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        customer Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <select class="form-control form-control-sm" name="School" [(ngModel)]="model['SchoolId']" (ngModelChange)="schoolChange($event)">
+          <option *ngFor="let options of SchoolList" [value]="options['Id']">
+            {{options['Name']}}
+          </option>
+        </select>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Item Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <select class="form-control form-control-sm" name="ItemId" [(ngModel)]="saleDetailModel['ItemId']" (ngModelChange)="itemChange()">
+          <option *ngFor="let item of items" [value]="item['ItemId']">{{item['ItemName']}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Quantity
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" min = 1 name="Quantity" [(ngModel)]="saleDetailModel['Quantity']" (ngModelChange)="totalAmount()">
+       </div>
+       <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Total Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="TotalAmount" [(ngModel)]="model.TotalAmount">
+       </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Discount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" min=1 name="discount" [(ngModel)]="model.discount" (ngModelChange)="applyDiscount()">
+       </div>
+       <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Net Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="NetAmount" [(ngModel)]="model.NetAmount">
+       </div>
+    </div>
+    <div style="text-align: center;margin:2%">
+      <button type="submit" class="btn btn-success">Sale</button>
+    </div>
+  </form>
+
+  <div style="margin:2%">
+    <button class="btn btn-primary btn-sm" (click)="addRow()">Add Row</button>
+  </div>
+
+  <ngx-datatable 
+  class="data-table"
+  [rows]="dataRows"
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="100" 
+  [rowHeight]="45" 
+  [scrollbarH]="true" 
+  [limit]="50">
+
+  <ngx-datatable-column name="Item Name" prop="ItemName">
+    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
+      <select class="form-control" (blur)="update('ItemId',$event,rowIndex)">
+        <option *ngFor="let item of items" [value]="item['ItemId']">
+          {{item['ItemName']}}
+        </option>
+      </select>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+</app-card>

@@ -1,0 +1,335 @@
+<app-card title="New Print">
+  <div style="text-align: right">
+    <a (click)="printInvoice()" class="btn btn-info btn-sm" style="border-radius: 15px; font-size: 15px; background-color: darkblue; border-color: darkblue; color: white;">
+      <span class="glyphicon glyphicon-print"></span> Print
+    </a>
+  </div>
+  <br>
+
+  <div id="invoice">
+    <div style="border: 1px solid black; height: 100%;">
+      <div class="row" style="padding-top: 5px; margin-left: 2mm; margin-right: 2mm;">
+        <h6 style="margin-right: auto;">GSTIN : {{company['GSTIN']}}</h6>
+        <h6>Orignal Copy</h6>
+      </div>
+      <div style="text-align: center;">
+        <h3><u>TAX INVOICE</u></h3>
+        <h1>{{company['CompanyName']}}</h1>
+        <h3>{{company['CompanyAddress']}}</h3>
+      </div>
+      <div class="row" style="font-size: 15px; border-top: 1px solid black; margin: 0mm;">
+        <div class="col-sm-6" style="border-right: 1px solid black; padding-top: 2mm; padding-bottom: 2mm;">
+          <div class="row shiftBlock" style="margin: 0mm;">
+            <div class="col-5">
+                Book No.
+            </div>
+            :
+            <div class="col-5">
+                1
+            </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              Invoice No.
+          </div>
+          :
+          <div class="col-5">
+            {{model['SaleId']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              Date of Invoice
+          </div>
+          :
+          <div class="col-5">
+            {{model['CreatedDate'] | date : "dd/MM/yyyy"}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              Place of Supply
+          </div>
+          :
+          <div class="col-5">
+            {{company['State']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              Reverse Charge
+          </div>
+          :
+          <div class="col-5">
+              N
+          </div>
+          </div>
+        </div>
+        <div class="col-sm-6" style="padding-top: 2mm; padding-bottom: 2mm;">
+          <div class="row" style="margin: 0mm;">
+            <div class="col-5">
+                GR/RR No.
+            </div>
+            : {{school['GRRNo']}}
+            <div class="col-5">
+                
+            </div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+              Transport
+          </div>
+          :
+          <div class="col-5">
+              Self
+          </div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+              Vehicle No.
+          </div>
+          : {{school['VichleNo']}}
+          <div class="col-5">
+              
+          </div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+              Station
+          </div>
+          :
+          <div class="col-5">
+              
+          </div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+              E-Way Bill No.
+          </div>
+          : {{school['EwayBillNo']}}
+          <div class="col-5">
+              
+          </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 15px; border-top: 1px solid black;  margin: 0mm;">
+        <div class="col-sm-6" style="border-right: 1px solid black; padding-top: 2mm; padding-bottom: 2mm;">
+          <div class="row shiftBlock" style="margin: 0mm;">
+            <div class="col-5"><i><h6>Billed to : </h6></i></div>
+            <div class="col-5"><i><h6>{{model['CustomerName']}}</h6></i></div>
+          
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+            <div class="col-5">
+              Address:
+          </div>
+            <div class="col-5"> {{school['Address']}}</div>
+          </div>
+         
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              Party PAN
+          </div>
+          :
+          <div class="col-5">
+            {{school['panno']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              Party AadhaarNo
+          </div>
+          :
+          <div class="col-5">
+            {{school['AadharNo']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-5">
+              GSTIN / UIN
+          </div>
+          :
+          <div class="col-5">
+            {{school['gstno']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+            <div class="col-5">
+                Mobile No
+            </div>
+            :
+            <div class="col-5">
+              {{school['Contact']}}
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-6" style="padding-top: 2mm; padding-bottom: 2mm;">
+          <div class="row" style="margin: 0mm;">
+            <div class="col-5"><i><h6>Shipped to.  :</h6></i></div>
+            <div class="col-5"><i><h6>{{model['CustomerName']}}</h6></i></div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+            <div class="col-5">
+              Address:
+          </div>
+            <div class="col-5"> {{school['Address']}}</div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+            Party PAN
+          </div>
+          :
+          <div class="col-5">
+            {{school['panno']}}
+          </div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+            Party AadhaarNo
+          </div>
+          :
+          <div class="col-5">
+            {{school['AadharNo']}}
+          </div>
+          </div>
+          <div class="row" style="margin: 0mm;">
+          <div class="col-5">
+            GSTIN / UIN
+          </div>
+          :
+          <div class="col-5">
+            {{school['gstno']}}
+          </div>
+          </div>
+        </div>
+      </div>
+        <table>
+          <tr>
+            <th>S.N.</th>
+            <th>Description of Goods</th>
+            <th>HSN Code</th>
+            <th>Qty.</th>
+            <!-- <th>Unit</th> -->
+            <th>Price</th>
+            <!-- <th>Discount</th> -->
+            <th>Tax(%)</th>
+            <!-- <th>CGST Amount</th>
+            <th>SGST Rate</th>
+            <th>SGST Amount</th> -->
+            <th>Amount(₹)</th>
+          </tr>
+          <tr *ngFor = 'let data of dataRows, let i = index'>
+            <td>{{i+1}}</td>
+            <td>{{data.ItemName}}</td>
+            <td>{{data.HsnCode}}</td>
+            <td>{{data.Quantity}}</td>
+            <!-- <td>{{data.unit}}</td> -->
+            <td>{{data.rate}}</td>
+            <!-- <td>{{data.discount}}</td> -->
+            <td>{{data.tex_rate}}</td>
+            <!-- <td>{{data.cgstamnt}}</td>
+            <td>{{data.sgstrate}}</td>
+            <td>{{data.sgstamnt}}</td> -->
+            <td>{{data.NetPrice}}</td>
+          </tr>
+          <!-- <tr>
+            <td colspan="10" style="text-align: center;"><i>Less : Rounded Off(*)</i></td>
+            <td><p style="text-align: center; margin: 0mm;">{{model['NetAmount']}}</p><p style="text-align: end; padding-right: 13px; margin-bottom: 2mm;">0.02</p></td>
+          </tr> -->
+          <tr>
+            <td colspan="6"><span style="float: right; padding-right: 1mm;">₹</span></td>
+            <td>{{model['NetAmount'] | number:'1.0-0'}}</td>
+          </tr>
+        </table>
+        <div id="footer" *ngIf = 'count == "first"'>
+          <div style="margin: 3mm;">
+            <div class="col-7 row" style="border-bottom: 1px solid black; margin-bottom: 1mm; padding: 0mm; margin: 0mm;">
+              <!-- <p class="col-2" style="margin-bottom: 1mm;">HSN/SAC</p> -->
+              <p class="col-2" style="margin-bottom: 1mm;">Tax Rate</p>
+              <p class="col-2" style="padding: 0mm; margin-bottom: 1mm;">Discount</p>
+              <p class="col-2" style="margin-bottom: 1mm;">CGST</p>
+              <p class="col-2" style="margin-bottom: 1mm;">SGST</p>
+              <p class="col-2" style="margin-bottom: 1mm;">Total Tax</p>
+            </div>
+            
+            <div class="col-7 row" style="margin: 0mm;" *ngFor = 'let tax of taxdata' >
+              <!-- <p class="col-2" style="margin-bottom: 1mm;">{{data[0]['HsnCode']}}</p> -->
+              <p class="col-2" style="margin-bottom: 1mm;">{{tax['tex_rate']}}%</p>
+              <p class="col-2" style="padding: 0mm; margin-bottom: 1mm;">{{tax['discount']}}</p>
+              <p class="col-2" style="margin-bottom: 1mm;">{{tax['taxamount']/2}}</p>
+              <p class="col-2" style="margin-bottom: 1mm;">{{tax['taxamount']/2}}</p>
+              <p class="col-2" style="margin-bottom: 1mm;">{{tax['taxamount']}}</p>
+            </div>
+          </div>
+          <div style="margin: 3mm;">
+            <!-- Total Tax Amount:  -->
+            <!-- <h6> INR Rupees Five Lakh Forty Two Thousand Six Hundred Thirty Only</h6> -->
+          </div>
+            <div class="row" style="border: 1px solid black; margin: 0mm;">
+              <div class="col-6 lastBlock">
+                <h6><u>Terms & Conditions</u></h6>
+                <p style="margin: 0mm;">E.& O.E.</p>
+                <p style="margin: 0mm;">1. Goods once sold will not be taken back.</p>
+                <p style="margin: 0mm;">2. Interest @ 18% p.a. will be charged if the payment is not made in the stipulated time.</p>
+                <p style="margin: 0mm;">3. Subject to 'BAGHPAT' Jurisdiction only.</p>
+              </div>
+              <div class="col-6" style="padding-top: 2mm; padding-left: 0mm; padding-right: 0mm; padding-bottom: 4mm;">
+                <div style="border-bottom: 1px solid black; height: 15mm; padding-left: 2mm;">
+                  <h6>Receiver's Signature : </h6>
+                </div>
+                <div style="padding-top: 2mm;">
+                  <h4 style="margin-bottom: 8mm; width: 98%; text-align: end;">FOR M/S {{company['CompanyName']}}</h4>
+                  <h5 style="width: 98%; text-align: end;">Authorised Signatory</h5>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div id="footer2" *ngIf = 'count == "second"'>
+          <div style="margin: 3mm;">
+            <div class="col-7 row" style="border-bottom: 1px solid black; margin-bottom: 1mm; padding: 0mm; margin: 0mm;">
+               <!-- <p class="col-2" style="margin-bottom: 1mm;">HSN/SAC</p> -->
+               <p class="col-2" style="margin-bottom: 1mm;">Tax Rate</p>
+               <p class="col-2" style="padding: 0mm; margin-bottom: 1mm;">Discount</p>
+               <p class="col-2" style="margin-bottom: 1mm;">CGST</p>
+               <p class="col-2" style="margin-bottom: 1mm;">SGST</p>
+               <p class="col-2" style="margin-bottom: 1mm;">Total Tax</p>
+             </div>
+             
+             <div class="col-7 row" style="margin: 0mm;" *ngFor = 'let tax of taxdata' >
+               <!-- <p class="col-2" style="margin-bottom: 1mm;">{{data[0]['HsnCode']}}</p> -->
+               <p class="col-2" style="margin-bottom: 1mm;">{{tax['tex_rate']}}%</p>
+               <p class="col-2" style="padding: 0mm; margin-bottom: 1mm;">{{tax['discount']}}</p>
+               <p class="col-2" style="margin-bottom: 1mm;">{{tax['taxamount']/2}}</p>
+               <p class="col-2" style="margin-bottom: 1mm;">{{tax['taxamount']/2}}</p>
+               <p class="col-2" style="margin-bottom: 1mm;">{{tax['taxamount']}}</p>
+             </div>
+          </div>
+          <div style="margin: 3mm;">
+            <!-- <h6>Rupees Five Lakh Forty Two Thousand Six Hundred Thirty Only</h6>
+           -->
+          </div>
+            <div class="row" style="border: 1px solid black; margin: 0mm;">
+              <div class="col-6 lastBlock">
+                <h6><u>Terms & Conditions</u></h6>
+                <p style="margin: 0mm;">E.& O.E.</p>
+                <p style="margin: 0mm;">1. Goods once sold will not be taken back.</p>
+                <p style="margin: 0mm;">2. Interest @ 18% p.a. will be charged if the payment is not made in the stipulated time.</p>
+                <p style="margin: 0mm;">3. Subject to 'BAGHPAT' Jurisdiction only.</p>
+              </div>
+              <div class="col-6" style="padding-top: 2mm; padding-left: 0mm; padding-right: 0mm; padding-bottom: 4mm;">
+                <div style="border-bottom: 1px solid black; height: 15mm; padding-left: 2mm;">
+                  <h6>Receiver's Signature : </h6>
+                </div>
+                <div style="padding-top: 2mm;">
+                  <h4 style="margin-bottom: 8mm; width: 98%; text-align: end;">FOR M/S {{company['CompanyName']}}</h4>
+                  <h5 style="width: 98%; text-align: end;">Authorised Signatory</h5>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</app-card>
